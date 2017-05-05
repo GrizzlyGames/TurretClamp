@@ -1,0 +1,34 @@
+Initialize engine version: 5.5.1f1 (88d00a7498cd)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: ATI Radeon HD 5800 Series (ID=0x6898)
+    Vendor:   ATI
+    VRAM:     1010 MB
+    Driver:   15.200.1060.0
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\graphic\Desktop\TurretClamp.19\clamp target fire alpha\erere_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\graphic\Desktop\TurretClamp.19\clamp target fire alpha\erere_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\graphic\Desktop\TurretClamp.19\clamp target fire alpha\erere_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\graphic\Desktop\TurretClamp.19\clamp target fire alpha\erere_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\graphic\Desktop\TurretClamp.19\clamp target fire alpha\erere_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\graphic\Desktop\TurretClamp.19\clamp target fire alpha\erere_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\graphic\Desktop\TurretClamp.19\clamp target fire alpha\erere_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\graphic\Desktop\TurretClamp.19\clamp target fire alpha\erere_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\graphic\Desktop\TurretClamp.19\clamp target fire alpha\erere_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading C:\Users\graphic\Desktop\TurretClamp.19\clamp target fire alpha\erere_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+- Completed reload, in  0.178 seconds
+Platform assembly: C:\Users\graphic\Desktop\TurretClamp.19\clamp target fire alpha\erere_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\graphic\Desktop\TurretClamp.19\clamp target fire alpha\erere_Data\Managed\System.dll (this message is harmless)
+desktop: 2560x1440 60Hz; virtual: 2560x1440 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.294629 ms
+Setting up 6 worker threads for Enlighten.
+  Thread -> id: c18 -> priority: 1 
+  Thread -> id: 16f0 -> priority: 1 
+  Thread -> id: ce8 -> priority: 1 
+  Thread -> id: 1e2c -> priority: 1 
+  Thread -> id: 1a78 -> priority: 1 
+  Thread -> id: 1950 -> priority: 1 
