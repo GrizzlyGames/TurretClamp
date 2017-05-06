@@ -52,7 +52,7 @@ public class SceneCounterScript : MonoBehaviour {
 
 
 
-		if (Input.GetKeyDown (KeyCode.Escape)) {
+		if (Input.GetKeyDown (KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)) {
 			AudioSource.PlayClipAtPoint (pauseAudio, transform.position, 1f);
 			pauseGame ();
 		}
