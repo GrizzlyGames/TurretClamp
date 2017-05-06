@@ -34,7 +34,6 @@ public class SceneCounterScript : MonoBehaviour {
 	void Update () {
 
 
-
 		Ray camtoNavRay = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit hit;
 
@@ -60,10 +59,7 @@ public class SceneCounterScript : MonoBehaviour {
 		enemyCounterArray = GameObject.FindGameObjectsWithTag("Enemy");
 		finalenemyCount = enemyCounterArray.Length - 1;
 		enemyCounterText.text =finalenemyCount.ToString ("00");
-		if (thePlayerHealth.deadBool) {
-			print ("nooooo");
-			SceneManager.LoadScene (3);
-		}
+
 
 		if (finalenemyCount <=0){
 			SceneManager.LoadScene (4);

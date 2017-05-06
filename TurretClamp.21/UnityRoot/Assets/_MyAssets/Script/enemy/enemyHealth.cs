@@ -15,8 +15,7 @@ public class enemyHealth : MonoBehaviour {
 	public AudioClip LoseFX;
 	public AudioClip enemyDamageFX;
 
-	// Use this for initialization
-	void Start () {
+	private void Start () {
 
 		currentHealth = fullHealth;
 		myNavAgent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
@@ -24,20 +23,13 @@ public class enemyHealth : MonoBehaviour {
 		myAnim = GetComponent<Animator> ();
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
-	void OnCollisionEnter(Collision other){		
+    private void OnCollisionEnter(Collision other){		
 		if (other.collider.tag == "BulletStandard"){
 			addDamage (1);
 			Destroy (other.gameObject);
 		}
-
 	}
-
 
 	public void addDamage(float damage){
 
@@ -59,6 +51,5 @@ public class enemyHealth : MonoBehaviour {
 		Destroy (gameObject,1.7f);
 		myNavAgent.Stop();
 		deathBool = true;
-
 	}
 }

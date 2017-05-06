@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 public class playerHealth : MonoBehaviour {
 
 	public float fullHealth;
 	float currentHealth;
-	UnityEngine.AI.NavMeshAgent myNavAgent;
+	NavMeshAgent myNavAgent;
 	public GameObject backoff;
 	bool slowTrigger = false;
 	bool deadTrigger = false;
@@ -18,61 +20,50 @@ public class playerHealth : MonoBehaviour {
 	Rigidbody myRB;
 	WeaponSwitch_Controller weaponSwitch;
 
-	public Slider playerHealthSlider;
+    public Image healthImage;
+
 	public AudioClip LoseFX;
 	public AudioClip playerDamageFX;
 
 
-	// Use this for initialization
-	void Start () {
-
+    private void Start () {
 		currentHealth = fullHealth;
-		playerHealthSlider.maxValue = fullHealth * 2;
-		playerHealthSlider.value = currentHealth;
-		myNavAgent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
+        UpdateHealthBar();
+        myNavAgent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
 		weaponSwitch = GetComponent<WeaponSwitch_Controller> ();
 		myRB = GetComponent<Rigidbody> ();
 		myAnim = GetComponent<Animator> ();
 		deadBool = false;
 	}
 	
-	// Update is called once per frame
-	void Update () {
+    private void UpdateHealthBar()
+    {
+        healthImage.fillAmount = currentHealth / fullHealth;
+    }
 
-	}
 	public void addDamage(float damage){
 		if (deadBool == false) {
 			AudioSource.PlayClipAtPoint (playerDamageFX, transform.position, 1f);
 
-
-
 			currentHealth -= damage;
 			print ("health is" + currentHealth);
-
-			playerHealthSlider.value = currentHealth;
+            UpdateHealthBar();
 
 			if (currentHealth <= 0) {
-				//gameObject.GetComponent(SphereCollider).o;
-				makeDead ();
-
+                StartCoroutine(DeathDelay());
 			}
-		} else if (deadBool) {
-			
 		}
 	}
-	public void makeDead(){
-		deadBool = true;
 
-		myAnim.SetBool ("isDead",true);
-		AudioSource.PlayClipAtPoint (LoseFX, transform.position, 1f); 
-		DestroyObject (weaponSwitch.singleClone);
-		DestroyObject (weaponSwitch.doubleClone);
-		DestroyObject (weaponSwitch.plasmaClone);
-		Destroy (gameObject,10f);
+    private IEnumerator DeathDelay()
+    {
+        deadBool = true;
+        myAnim.SetBool("isDead", true);
+        AudioSource.PlayClipAtPoint(LoseFX, transform.position, 1f);
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(3);
+    }
 
-
-
-	}
 	public void slowDown(float reduce){
 		if (!slowTrigger) {
 			myNavAgent.speed -= reduce;
@@ -93,7 +84,7 @@ public class playerHealth : MonoBehaviour {
 		fire.transform.SetParent (gameObject.transform);
 	}
 
-	void OnCollisionEnter(Collision other){		
+	private void OnCollisionEnter(Collision other){		
 		if (other.collider.tag == "enemyBullet") {
 			addDamage (1);
 			Destroy (other.gameObject);
