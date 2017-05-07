@@ -23,14 +23,10 @@ public class gunpickupController : MonoBehaviour {
 
 	}
 
-
-
 	void OnTriggerEnter(Collider other){
 		if (other.tag == "GunSpawn") {
 
 			AudioSource.PlayClipAtPoint(pickUpFX,transform.position,.6f);
-
-
 			if (Single) {
 
 				switcher.inputSingle = true;
@@ -53,23 +49,9 @@ public class gunpickupController : MonoBehaviour {
 
 			}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 			Instantiate (deadParticle, transform.position, transform.rotation);
 
-			Destroy (transform.root.gameObject);
+			Destroy (this.transform.parent.gameObject);
 
 
 		}

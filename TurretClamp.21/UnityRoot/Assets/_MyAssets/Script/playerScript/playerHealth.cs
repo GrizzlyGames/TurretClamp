@@ -61,7 +61,7 @@ public class playerHealth : MonoBehaviour {
         myAnim.SetBool("isDead", true);
         AudioSource.PlayClipAtPoint(LoseFX, transform.position, 1f);
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene("Game Over");
     }
 
 	public void slowDown(float reduce){
