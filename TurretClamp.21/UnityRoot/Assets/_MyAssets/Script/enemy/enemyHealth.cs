@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 public class enemyHealth : MonoBehaviour {
 
-    public Image healthImage;
 	public float fullHealth;
 	float currentHealth;
 	UnityEngine.AI.NavMeshAgent myNavAgent;
@@ -16,10 +15,10 @@ public class enemyHealth : MonoBehaviour {
 	public AudioClip LoseFX;
 	public AudioClip enemyDamageFX;
 
-	private void Start () {        
-        currentHealth = fullHealth;
-        healthImage.fillAmount = (float)currentHealth / (float)fullHealth;
-        myNavAgent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
+	private void Start () {
+
+		currentHealth = fullHealth;
+		myNavAgent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
 		myRB = GetComponent<Rigidbody> ();
 		myAnim = GetComponent<Animator> ();
 		
@@ -38,9 +37,7 @@ public class enemyHealth : MonoBehaviour {
 			AudioSource.PlayClipAtPoint (enemyDamageFX, transform.position, 1f);
 			myAnim.SetTrigger ("isHit");
 			currentHealth -= damage;
-            healthImage.fillAmount = (float)currentHealth / (float)fullHealth;
-
-            print ("health is" + currentHealth);
+			print ("health is" + currentHealth);
 			if (currentHealth <= 0) {
 				makeDead ();
 			}
