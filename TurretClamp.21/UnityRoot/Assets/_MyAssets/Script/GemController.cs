@@ -12,7 +12,7 @@ public class GemController : MonoBehaviour {
 		if (other.tag == "Player") {
 			Instantiate (collectParticle, transform.position, Quaternion.Euler (new Vector3 (-90,0,0)));
 			other.gameObject.GetComponent<ClawPlayerController> ().AddGems (gemValue);
-			other.gameObject.GetComponent<playerHealth> ().addDamage (-3);
+			other.gameObject.GetComponent<Player_Health> ().addDamage (-3);
 			AudioSource.PlayClipAtPoint(pickUpSound,transform.position,.5f);
 			Destroy (transform.root.gameObject);
 			 

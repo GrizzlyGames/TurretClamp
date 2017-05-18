@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SceneCounterScript : MonoBehaviour {
 
 	GameObject thePlayer;
-	playerHealth thePlayerHealth;
+	Player_Health thePlayerHealth;
 	public GameObject[] enemyCounterArray;
 	public Text enemyCounterText;
 	public float finalenemyCount;
@@ -25,7 +25,7 @@ public class SceneCounterScript : MonoBehaviour {
 	void Start () {
 		
 		thePlayer = GameObject.FindGameObjectWithTag ("Player");
-		thePlayerHealth = thePlayer.GetComponent<playerHealth > ();
+		thePlayerHealth = thePlayer.GetComponent<Player_Health > ();
 		Time.timeScale = 1;
 
 	}

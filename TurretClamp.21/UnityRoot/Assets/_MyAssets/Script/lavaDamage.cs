@@ -11,14 +11,14 @@ public class lavaDamage : MonoBehaviour {
 	bool playerInRange = false;
 
 	GameObject thePlayer;
-	playerHealth thePlayerHealth;
+	Player_Health thePlayerHealth;
 	UnityEngine.AI.NavMeshAgent playerNavMesh;		//nav mesh caller
 
 	// Use this for initialization
 	void Start () {
 
 		thePlayer = GameObject.FindGameObjectWithTag ("Player");
-		thePlayerHealth = thePlayer.GetComponent<playerHealth > ();
+		thePlayerHealth = thePlayer.GetComponent<Player_Health > ();
 		playerNavMesh = thePlayer.GetComponent<UnityEngine.AI.NavMeshAgent> ();
 	
 	}

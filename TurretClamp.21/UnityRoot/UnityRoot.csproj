@@ -88,6 +88,11 @@
     <Compile Include="Assets\_MyAssets\Script\DestroyMe.cs" />
     <Compile Include="Assets\_MyAssets\Script\GemController.cs" />
     <Compile Include="Assets\_MyAssets\Script\ItemRotateScript.cs" />
+    <Compile Include="Assets\_MyAssets\Script\Player\Camera_Controller.cs" />
+    <Compile Include="Assets\_MyAssets\Script\Player\ClawPlayerController.cs" />
+    <Compile Include="Assets\_MyAssets\Script\Player\Player_Health.cs" />
+    <Compile Include="Assets\_MyAssets\Script\Player\WeaponSwitch_Controller.cs" />
+    <Compile Include="Assets\_MyAssets\Script\Player\attachment_nodeController.cs" />
     <Compile Include="Assets\_MyAssets\Script\bulletAndGunScript\BulletSpawn_PlasmaShot.cs" />
     <Compile Include="Assets\_MyAssets\Script\bulletAndGunScript\BulletSpawn_SingleShot.cs" />
     <Compile Include="Assets\_MyAssets\Script\bulletAndGunScript\bulletProperties.cs" />
@@ -101,11 +106,6 @@
     <Compile Include="Assets\_MyAssets\Script\gemHealth.cs" />
     <Compile Include="Assets\_MyAssets\Script\gunpickupController.cs" />
     <Compile Include="Assets\_MyAssets\Script\lavaDamage.cs" />
-    <Compile Include="Assets\_MyAssets\Script\playerScript\CameraController.cs" />
-    <Compile Include="Assets\_MyAssets\Script\playerScript\ClawPlayerController.cs" />
-    <Compile Include="Assets\_MyAssets\Script\playerScript\WeaponSwitch_Controller.cs" />
-    <Compile Include="Assets\_MyAssets\Script\playerScript\attachment_nodeController.cs" />
-    <Compile Include="Assets\_MyAssets\Script\playerScript\playerHealth.cs" />
     <Compile Include="Assets\enemyBullet_Proporties.cs" />
     <Compile Include="Assets\enemy_BulletSpawn_SingleShot.cs" />
     <Compile Include="Assets\resetCurdor.cs" />

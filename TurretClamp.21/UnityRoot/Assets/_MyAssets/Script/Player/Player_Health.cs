@@ -3,37 +3,37 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
-public class playerHealth : MonoBehaviour {
+public class Player_Health : MonoBehaviour {
 
-	public float fullHealth;
-	float currentHealth;
-	NavMeshAgent myNavAgent;
+    public float fullHealth;
+    public float currentHealth;
+	
 	public GameObject backoff;
 	bool slowTrigger = false;
 	bool deadTrigger = false;
-	public bool deadBool = false;
+	public bool isAlive = true;
 
 	public GameObject springParticle;
 	public GameObject fireParticle;
 
-	Animator myAnim;
-	Rigidbody myRB;
-	WeaponSwitch_Controller weaponSwitch;
+    private NavMeshAgent myNavAgent;
+
+    private Animator animator;
+    private Rigidbody rididbody;
+    private WeaponSwitch_Controller weaponSwitch;
 
     public Image healthImage;
 
 	public AudioClip LoseFX;
 	public AudioClip playerDamageFX;
 
-
     private void Start () {
-		currentHealth = fullHealth;
+		currentHealth = fullHealth / 3;
         UpdateHealthBar();
         myNavAgent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
 		weaponSwitch = GetComponent<WeaponSwitch_Controller> ();
-		myRB = GetComponent<Rigidbody> ();
-		myAnim = GetComponent<Animator> ();
-		deadBool = false;
+		rididbody = GetComponent<Rigidbody> ();
+		animator = GetComponent<Animator> ();
 	}
 	
     private void UpdateHealthBar()
@@ -42,14 +42,12 @@ public class playerHealth : MonoBehaviour {
     }
 
 	public void addDamage(float damage){
-		if (deadBool == false) {
-			AudioSource.PlayClipAtPoint (playerDamageFX, transform.position, 1f);
-
-			currentHealth -= damage;
-			print ("health is" + currentHealth);
+		if (isAlive) {
+            currentHealth -= damage;
             UpdateHealthBar();
+            AudioSource.PlayClipAtPoint (playerDamageFX, transform.position, 1f);			
 
-			if (currentHealth <= 0) {
+			if (currentHealth < 1) {
                 StartCoroutine(DeathDelay());
 			}
 		}
@@ -57,8 +55,8 @@ public class playerHealth : MonoBehaviour {
 
     private IEnumerator DeathDelay()
     {
-        deadBool = true;
-        myAnim.SetBool("isDead", true);
+        isAlive = false;
+        animator.SetBool("isDead", true);
         AudioSource.PlayClipAtPoint(LoseFX, transform.position, 1f);
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene("Game Over");
@@ -80,7 +78,7 @@ public class playerHealth : MonoBehaviour {
 		Instantiate (springParticle, transform.position,Quaternion.Euler (new Vector3 (-90,0,0)));
 	}
 	public void fireFX(){
-		var fire = (GameObject)Instantiate (fireParticle, transform.position,Quaternion.Euler (new Vector3 (-90,0,0)));
+		GameObject fire = Instantiate (fireParticle, transform.position,Quaternion.identity) as GameObject;
 		fire.transform.SetParent (gameObject.transform);
 	}
 

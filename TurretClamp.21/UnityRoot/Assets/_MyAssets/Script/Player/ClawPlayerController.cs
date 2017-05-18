@@ -15,7 +15,6 @@ public class ClawPlayerController : MonoBehaviour {
 	bool speedSwitch = false;	//used to check if the player is pushed back
 
 	GameObject dirt;
-
 																					//marker gameobjects
 	Vector3 prevLocation;	//saves location of markers
 	Vector3 hitLocation;
@@ -39,7 +38,7 @@ public class ClawPlayerController : MonoBehaviour {
 	public AudioClip walkFX;
 	public AudioClip boopFX;
 
-    public playerHealth healthScript;
+    public Player_Health healthScript;
 
 																										// Use this for initialization
 	void Start () {
@@ -54,15 +53,14 @@ public class ClawPlayerController : MonoBehaviour {
 	
 																												// Update is called once per frame
 	void Update () {
-        if (!healthScript.deadBool)
+        if (healthScript.isAlive)
         {
             Ray camtoNavRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
 
             if (!speedSwitch && myRB.velocity.magnitude < myNavAgent.speed)
-            {                               //makes sure plyer doesnt walk back when hit
-
+            {                             //makes sure plyer doesnt walk back when hit
                 speedSwitch = true;
             }
 
@@ -72,15 +70,9 @@ public class ClawPlayerController : MonoBehaviour {
                 {
                     myNavAgent.destination = transform.position;
                     speedSwitch = false;
-
                 }
-
-
             }
-            else
-            {
 
-            }
 
             //raycast stuff to make it follow
             if (myNavAgent.remainingDistance != 0)

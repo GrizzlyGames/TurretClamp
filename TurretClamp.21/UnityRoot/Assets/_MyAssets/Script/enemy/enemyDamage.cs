@@ -11,7 +11,7 @@ public class enemyDamage : MonoBehaviour {
 	bool playerInRangeofSpike = false;		//check if player in range
 
 	GameObject thePlayer;
-	playerHealth thePlayerHealth;	//refernce to the players health code
+	Player_Health thePlayerHealth;	//refernce to the players health code
 
 	public bool springFX = false;	//particles
 	public bool fireFX = false;
@@ -20,7 +20,7 @@ public class enemyDamage : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		thePlayer = GameObject.FindGameObjectWithTag ("Player");
-		thePlayerHealth = thePlayer.GetComponent<playerHealth > ();
+		thePlayerHealth = thePlayer.GetComponent<Player_Health > ();
 		nextDamage = Time.time;
 
 	
