@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-public class ClawPlayerController : MonoBehaviour {
+using UnityEngine.AI;
+public class Player_Manager : MonoBehaviour {
 
 	public GameObject dirtPrefab;
-	Animator myAnim;
-	Rigidbody myRB;
-	UnityEngine.AI.NavMeshAgent myNavAgent;
 
-	//for the gemhealth things
+	private Animator animator;
+    private Rigidbody rigidbody;
+    private NavMeshAgent myNavAgent;
+
 	int currentGems = 0;
 
-	bool dug;		//bool to see if the player is in the ground
+	bool dug = false;	//bool to see if the player is in the ground
 	bool speedSwitch = false;	//used to check if the player is pushed back
 
 	GameObject dirt;
@@ -40,78 +40,59 @@ public class ClawPlayerController : MonoBehaviour {
 
     public Player_Health healthScript;
 
-																										// Use this for initialization
-	void Start () {
-		myAnim = GetComponent<Animator>();
+    private void Start () {
+		animator = GetComponent<Animator>();
 		myNavAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 		prevLocation = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
-		dug = false;
-		myRB = GetComponent<Rigidbody> ();
-	
-		speedSwitch = false;
+		rigidbody = GetComponent<Rigidbody> ();
 	}
-	
-																												// Update is called once per frame
-	void Update () {
+    private void Update () {
         if (healthScript.isAlive)
         {
-            Ray camtoNavRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-
-            if (!speedSwitch && myRB.velocity.magnitude < myNavAgent.speed)
+            if (!speedSwitch && rigidbody.velocity.magnitude < myNavAgent.speed)
             {                             //makes sure plyer doesnt walk back when hit
                 speedSwitch = true;
             }
 
             if (speedSwitch)
             {
-                if (myRB.velocity.magnitude >= myNavAgent.speed / 4)
+                if (rigidbody.velocity.magnitude >= myNavAgent.speed / 4)
                 {
                     myNavAgent.destination = transform.position;
                     speedSwitch = false;
                 }
             }
 
-
             //raycast stuff to make it follow
             if (myNavAgent.remainingDistance != 0)
             {
-                myAnim.SetBool("isRunning", true);
+                animator.SetBool("isRunning", true);
                 if (Time.time > nextrockTimerFire)
                 {
                     AudioSource.PlayClipAtPoint(walkFX, transform.position, 1f);
                     Instantiate(rockParticle, transform.position, transform.rotation);
                     nextrockTimerFire = Time.time + rockTimer;
                 }
-
-
-
-
             }
             else
             {
-                myAnim.SetBool("isRunning", false);
-                //prevLocation = transform.position;
-                //print (prevLocation);
+                animator.SetBool("isRunning", false);
             }
             if (Input.GetKeyDown(KeyCode.S))
-            {                       //makes the player back stack when you hit the s key
+            {
                 myNavAgent.destination = prevLocation;
-
             }
-            if (Input.GetKeyUp(KeyCode.S))
+            else if (Input.GetKeyUp(KeyCode.S))
             {
                 myNavAgent.destination = hitLocation;
 
             }
-
             if (Input.GetButtonDown("Fire1") && !dug)
             {                                                           // hit leftClick, make ray for player to follow
-
-                if (Physics.Raycast(camtoNavRay, out hit, 10))
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit, 10))
                 {
-
                     if (hit.collider.tag != "Blocked")
                     {
                         prevLocation = new Vector3(transform.position.x, transform.position.y, transform.position.z);
@@ -119,14 +100,11 @@ public class ClawPlayerController : MonoBehaviour {
                         myNavAgent.destination = hit.point;
                         hitLocation = new Vector3(hit.point.x, hit.point.y, hit.point.z);
 
-
                         Destroy(markerClone);           //desroys old markers and then makes new ones
                         Destroy(preMarkerClone);
                         markerClone = (GameObject)Instantiate(Marker, hitLocation, transform.rotation);
                         preMarkerClone = (GameObject)Instantiate(preMarker, prevLocation, transform.rotation);
-
-                        myNavAgent.Resume();
-
+                        myNavAgent.isStopped = false;
                     }
                     else
                     {
@@ -142,7 +120,7 @@ public class ClawPlayerController : MonoBehaviour {
                 {       //if dug into the ground, come out of ground
                     dug = false;
                     Destroy(dirt);
-                    myAnim.SetBool("isDug", false); //makes sure the animator know ou are digging out
+                    animator.SetBool("isDug", false); //makes sure the animator know ou are digging out
                     AudioSource.PlayClipAtPoint(digUpFX, transform.position, 10f);
 
                 }
@@ -151,20 +129,17 @@ public class ClawPlayerController : MonoBehaviour {
                     Destroy(markerClone);
                     Destroy(preMarkerClone);
                     dug = true;
-                    myAnim.SetBool("isDug", true);
-                    myAnim.SetBool("isRunning", false);
+                    animator.SetBool("isDug", true);
+                    animator.SetBool("isRunning", false);
 
                     AudioSource.PlayClipAtPoint(digDownFX, transform.position, 10f);
 
                     myNavAgent.destination = transform.position;        //sets the positoin to the players transform, so the plyer stops
-                    myNavAgent.Stop();
+                    myNavAgent.isStopped = true;
                     dirt = (GameObject)Instantiate(dirtPrefab, transform.position, transform.rotation);
                     if (Time.time > nextrockTimerFire)
                     {
-
                         Instantiate(rockParticle, transform.position, transform.rotation);
-
-
                         nextrockTimerFire = Time.time + rockTimer;
                     }
                 }
@@ -174,9 +149,8 @@ public class ClawPlayerController : MonoBehaviour {
             myNavAgent.speed = 0;
     }
 
-	public void AddGems(int value){//gem stuff
+	public void AddGems(int value){ //gem stuff
 		currentGems +=value;
 		print(currentGems);
-
 	}
 }

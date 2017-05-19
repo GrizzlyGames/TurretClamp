@@ -3,14 +3,9 @@ using System.Collections;
 
 public class Camera_Controller : MonoBehaviour
 {
-    private Transform target;
+    public Transform target;
     public float rotationYOffSet;
 
-    private void Start()
-    {
-        target = GameObject.Find("Player").transform;
-        this.transform.position = target.position;
-    }
     private void Update()
     {
         CameraFollow();

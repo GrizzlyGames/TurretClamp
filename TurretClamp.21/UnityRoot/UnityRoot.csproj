@@ -89,8 +89,9 @@
     <Compile Include="Assets\_MyAssets\Script\GemController.cs" />
     <Compile Include="Assets\_MyAssets\Script\ItemRotateScript.cs" />
     <Compile Include="Assets\_MyAssets\Script\Player\Camera_Controller.cs" />
-    <Compile Include="Assets\_MyAssets\Script\Player\ClawPlayerController.cs" />
     <Compile Include="Assets\_MyAssets\Script\Player\Player_Health.cs" />
+    <Compile Include="Assets\_MyAssets\Script\Player\Player_Manager.cs" />
+    <Compile Include="Assets\_MyAssets\Script\Player\Player_Weapon.cs" />
     <Compile Include="Assets\_MyAssets\Script\Player\WeaponSwitch_Controller.cs" />
     <Compile Include="Assets\_MyAssets\Script\Player\attachment_nodeController.cs" />
     <Compile Include="Assets\_MyAssets\Script\bulletAndGunScript\BulletSpawn_PlasmaShot.cs" />
