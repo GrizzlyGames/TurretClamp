@@ -1,55 +1,68 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.UI;
+public class enemyHealth : MonoBehaviour
+{
+    public bool isAlive = true;
+    private float currentHealth;
+    public float maxHealth = 10;
 
-public class enemyHealth : MonoBehaviour {
+    private NavMeshAgent myNavAgent;
+    private Animator animator;
+    private AudioSource audioSource;
 
-	public float fullHealth;
-	float currentHealth;
-	UnityEngine.AI.NavMeshAgent myNavAgent;
-	Animator myAnim;
-	Rigidbody myRB;
+    public AudioClip deadSFX;
+    public AudioClip damageSFX;
 
-	public bool deathBool = false;
+    public Image healthImage;
 
-	public AudioClip LoseFX;
-	public AudioClip enemyDamageFX;
+    private void Start()
+    {
+        currentHealth = maxHealth;
+        UpdateHeathBar();
+        myNavAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+    }
 
-	private void Start () {
+    public void UpdateHeathBar()
+    {
+        healthImage.fillAmount = currentHealth / maxHealth;
+    }
 
-		currentHealth = fullHealth;
-		myNavAgent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
-		myRB = GetComponent<Rigidbody> ();
-		myAnim = GetComponent<Animator> ();
-		
-	}
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.collider.CompareTag("PlayerBullet"))
+        {
+            if (isAlive)
+                TakeDamage();
+            Destroy(other.gameObject);
+        }
+    }
 
-    private void OnCollisionEnter(Collision other){		
-		if (other.collider.tag == "BulletStandard"){
-			addDamage (1);
-			Destroy (other.gameObject);
-		}
-	}
+    public void TakeDamage()
+    {
+        audioSource.clip = damageSFX;
+        audioSource.Play();
+        audioSource.loop = false;
 
-	public void addDamage(float damage){
+        animator.SetTrigger("isHit");
 
-		if (deathBool == false) {
-			AudioSource.PlayClipAtPoint (enemyDamageFX, transform.position, 1f);
-			myAnim.SetTrigger ("isHit");
-			currentHealth -= damage;
-			print ("health is" + currentHealth);
-			if (currentHealth <= 0) {
-				makeDead ();
-			}
-		}
-	}
+        currentHealth--; ;
+        if (currentHealth < 1)
+            makeDead();
+    }
 
-	public void makeDead(){
-		deathBool = true;
-		AudioSource.PlayClipAtPoint (LoseFX, transform.position, 1f);
-		myAnim.SetBool ("isDead",true);
-		Destroy (gameObject,1.7f);
-		myNavAgent.Stop();
-		deathBool = true;
-	}
+    public void makeDead()
+    {
+        isAlive = false;
+        audioSource.clip = deadSFX;
+        audioSource.Play();
+        audioSource.loop = true;
+        animator.SetBool("isDead", true);
+        Destroy(gameObject, 2);
+        myNavAgent.isStopped = true;
+    }
 }

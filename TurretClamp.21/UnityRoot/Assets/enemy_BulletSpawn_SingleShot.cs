@@ -22,7 +22,7 @@ public class enemy_BulletSpawn_SingleShot : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		fireTimer = Random.Range (.5f, 1f);
-		if(!myhealth.deathBool){
+		if(!myhealth.isAlive){
 			if (moveCode.chase) {
 				if (Time.time > nextFireTime) {
 					var bullet = (GameObject)Instantiate (BulletPrefab, bulletSpawn.position, bulletSpawn.rotation);

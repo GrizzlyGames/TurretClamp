@@ -59,7 +59,7 @@ public class gemHealth : MonoBehaviour {
 	void OnTriggerEnter(Collider other){		//on colllision activate damage
 		myAnim.SetTrigger ("isShake");
 		//myAnim.SetTrigger ("isShake");
-		if (other.tag == "BulletStandard") {
+		if (other.tag == "PlayerBullet") {
 			
 			addDamage (1);
 			print ("hit!");

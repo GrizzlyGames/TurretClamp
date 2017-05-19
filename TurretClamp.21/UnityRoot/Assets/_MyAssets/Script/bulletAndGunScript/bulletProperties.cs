@@ -9,7 +9,7 @@ public class bulletProperties : MonoBehaviour {
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Shootable")) {	//looks for shotable layer to destroy bullet
 			Instantiate (ricochetFX, transform.position, Quaternion.Euler (new Vector3 (-90, 0, 0)));
 			Destroy (gameObject);
-		} else if (other.gameObject.tag == "BulletStandard") {
+		} else if (other.gameObject.tag == "PlayerBullet") {
 			Instantiate (ricochetFX, transform.position, Quaternion.Euler (new Vector3 (-90, 0, 0)));
 			Destroy (gameObject);
 			}
