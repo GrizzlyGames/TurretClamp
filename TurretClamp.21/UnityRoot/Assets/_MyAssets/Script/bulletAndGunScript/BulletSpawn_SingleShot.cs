@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+
 [RequireComponent(typeof(AudioSource))]
 public class BulletSpawn_SingleShot : MonoBehaviour {
 

@@ -100,15 +100,13 @@
     <Compile Include="Assets\_MyAssets\Script\bulletAndGunScript\firePlasma.cs" />
     <Compile Include="Assets\_MyAssets\Script\bulletAndGunScript\gunShotAnimation_Script.cs" />
     <Compile Include="Assets\_MyAssets\Script\bulletAndGunScript\shootPlasmaBlast.cs" />
+    <Compile Include="Assets\_MyAssets\Script\enemy\Enemy_Controller.cs" />
     <Compile Include="Assets\_MyAssets\Script\enemy\enemyDamage.cs" />
-    <Compile Include="Assets\_MyAssets\Script\enemy\enemyGunController.cs" />
     <Compile Include="Assets\_MyAssets\Script\enemy\enemyHealth.cs" />
-    <Compile Include="Assets\_MyAssets\Script\enemy\enemyTurretController.cs" />
     <Compile Include="Assets\_MyAssets\Script\gemHealth.cs" />
     <Compile Include="Assets\_MyAssets\Script\gunpickupController.cs" />
     <Compile Include="Assets\_MyAssets\Script\lavaDamage.cs" />
     <Compile Include="Assets\enemyBullet_Proporties.cs" />
-    <Compile Include="Assets\enemy_BulletSpawn_SingleShot.cs" />
     <Compile Include="Assets\resetCurdor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

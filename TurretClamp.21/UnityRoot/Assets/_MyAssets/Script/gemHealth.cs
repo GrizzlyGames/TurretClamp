@@ -40,12 +40,22 @@ public class gemHealth : MonoBehaviour {
 		Instantiate (gemPickup, itemSpawn.transform.position,itemSpawn.transform.rotation);
 	}
 
-    private void OnTriggerEnter(Collider other){
-		animator.SetTrigger ("isShake");
-		if (other.tag == "PlayerBullet") {			
+    void OnCollisionEnter(Collision collision)
+    {
+        animator.SetTrigger ("isShake");
+
+        if (collision.transform.CompareTag("Player"))
+        {
+            GameObject pushedObject = collision.gameObject;
+            Vector3 pushDirection = new Vector3((pushedObject.transform.position.x - transform.position.x), 0, (pushedObject.transform.position.z - transform.position.z));
+            pushDirection *= 5;
+            Rigidbody pushedRB = pushedObject.GetComponent<Rigidbody>();
+            pushedRB.velocity = Vector3.zero;
+            pushedRB.AddForce(pushDirection, ForceMode.Impulse);
+        }
+
+		if (collision.transform.CompareTag("PlayerBullet")) {			
 			addDamage();
 		}
-
 	}
-
 }

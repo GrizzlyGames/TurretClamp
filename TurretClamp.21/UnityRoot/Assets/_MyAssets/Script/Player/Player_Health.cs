@@ -19,7 +19,6 @@ public class Player_Health : MonoBehaviour {
     private NavMeshAgent myNavAgent;
 
     private Animator animator;
-    private Rigidbody rididbody;
     private WeaponSwitch_Controller weaponSwitch;
 
     public Image healthImage;
@@ -32,7 +31,6 @@ public class Player_Health : MonoBehaviour {
         UpdateHealthBar();
         myNavAgent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
 		weaponSwitch = GetComponent<WeaponSwitch_Controller> ();
-		rididbody = GetComponent<Rigidbody> ();
 		animator = GetComponent<Animator> ();
 	}
 	
@@ -59,7 +57,7 @@ public class Player_Health : MonoBehaviour {
         animator.SetBool("isDead", true);
         AudioSource.PlayClipAtPoint(LoseFX, transform.position, 1f);
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene("Game Over");
+        SceneManager.LoadScene(3);
     }
 
 	public void slowDown(float reduce){

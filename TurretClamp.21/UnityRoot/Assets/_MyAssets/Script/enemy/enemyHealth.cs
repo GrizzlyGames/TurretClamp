@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+[RequireComponent(typeof(AudioSource))]
 public class enemyHealth : MonoBehaviour
 {
     public bool isAlive = true;
@@ -29,7 +30,10 @@ public class enemyHealth : MonoBehaviour
 
     public void UpdateHeathBar()
     {
-        healthImage.fillAmount = currentHealth / maxHealth;
+        if (currentHealth > 1)
+            healthImage.fillAmount = currentHealth / maxHealth;
+        else
+            healthImage.enabled = false;
     }
 
     private void OnCollisionEnter(Collision other)
@@ -44,6 +48,8 @@ public class enemyHealth : MonoBehaviour
 
     public void TakeDamage()
     {
+        Debug.Log("Enemy took damage.");
+        UpdateHeathBar();
         audioSource.clip = damageSFX;
         audioSource.Play();
         audioSource.loop = false;
@@ -58,6 +64,7 @@ public class enemyHealth : MonoBehaviour
     public void makeDead()
     {
         isAlive = false;
+        GetComponent<Enemy_Controller>().enabled = false;
         audioSource.clip = deadSFX;
         audioSource.Play();
         audioSource.loop = true;

@@ -151,6 +151,6 @@ public class Player_Manager : MonoBehaviour {
 
 	public void AddGems(int value){ //gem stuff
 		currentGems +=value;
-		print(currentGems);
+		print("Gems: " + currentGems);
 	}
 }

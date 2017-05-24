@@ -62,7 +62,7 @@ public class SceneCounterScript : MonoBehaviour {
 
 
 		if (finalenemyCount <=0){
-			SceneManager.LoadScene (4);
+			SceneManager.LoadScene (2);
 		}
 	}
 	public void ChangeToScene (int ChangingScene){

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player_Weapon : MonoBehaviour {
-        
+
+    public Transform weaponTransform;
     public GameObject[] weaponsGO;
 
     private void Start()
@@ -22,7 +23,7 @@ public class Player_Weapon : MonoBehaviour {
         {
             if (!hit.collider.CompareTag("Blocked"))
             {
-                transform.LookAt(hit.point);
+                weaponTransform.LookAt(hit.point);
             }
         }
     }
