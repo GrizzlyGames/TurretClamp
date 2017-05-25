@@ -26,6 +26,7 @@ public class Enemy_Controller : MonoBehaviour
     public GameObject BulletPrefab;
     public Transform bulletSpawn;
     private float speed = 6f;
+    private bool canSeePlayer = false;
 
     private void Start()
     {
@@ -65,8 +66,11 @@ public class Enemy_Controller : MonoBehaviour
             if (hitInfo.transform.CompareTag("Player"))
             {
                 Debug.Log("Enemy can see player.");
+                canSeePlayer = true;
                 weaponTransform.LookAt(player.transform.position); // Look at player 
             }
+            else
+                canSeePlayer = false;
         }
     }
     // Use raycast to check line of sight to player, if can't see player, don't chase.
@@ -79,28 +83,31 @@ public class Enemy_Controller : MonoBehaviour
         // Debug.Log("Enemy distance from player: " + distance);
         if (distance < 4)
         {
-            if (!isShooting)
-                StartCoroutine(ShootDelay());
-            if (distance > 2f)
+            if (canSeePlayer)
             {
-                prevLocation = transform.position;
-                myNavAgent.destination = player.transform.position;
-                myNavAgent.speed = .4f;
-            }
-            else
-            {
-                if (distance > .8f)
+                if (!isShooting)
+                    StartCoroutine(ShootDelay());
+                if (distance > 2f)
                 {
+                    prevLocation = transform.position;
                     myNavAgent.destination = player.transform.position;
-                    myNavAgent.speed = .8f;
+                    myNavAgent.speed = .4f;
                 }
                 else
                 {
-                    prevLocation = 1f * Vector3.Normalize(transform.position - player.transform.position) + player.transform.position;
-                    myNavAgent.speed = 1f;
-                    myNavAgent.destination = prevLocation;
+                    if (distance > .8f)
+                    {
+                        myNavAgent.destination = player.transform.position;
+                        myNavAgent.speed = .8f;
+                    }
+                    else
+                    {
+                        prevLocation = 1f * Vector3.Normalize(transform.position - player.transform.position) + player.transform.position;
+                        myNavAgent.speed = 1f;
+                        myNavAgent.destination = prevLocation;
+                    }
                 }
-            }
+            }            
         }
         else
         {
