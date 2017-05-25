@@ -15,6 +15,20 @@ public class Player_Weapon : MonoBehaviour {
     {
         AimWeapon();
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.name == "BaseDouble")
+        {
+            ChangeWeapon(1);
+            Destroy(other.gameObject);
+        }
+            
+        else if (other.transform.name == "BasePlasma")
+        {
+            ChangeWeapon(2);
+            Destroy(other.gameObject);
+        }            
+    }
     private void AimWeapon()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

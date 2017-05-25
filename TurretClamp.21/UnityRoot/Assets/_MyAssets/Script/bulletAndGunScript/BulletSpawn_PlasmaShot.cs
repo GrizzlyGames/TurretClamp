@@ -41,8 +41,5 @@ public class BulletSpawn_PlasmaShot : MonoBehaviour {
 		Destroy (bullet, spawnTime);
 		
 	}
-	
-	
-	
-	
+
 }

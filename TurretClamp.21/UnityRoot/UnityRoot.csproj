@@ -104,7 +104,6 @@
     <Compile Include="Assets\_MyAssets\Script\enemy\enemyDamage.cs" />
     <Compile Include="Assets\_MyAssets\Script\enemy\enemyHealth.cs" />
     <Compile Include="Assets\_MyAssets\Script\gemHealth.cs" />
-    <Compile Include="Assets\_MyAssets\Script\gunpickupController.cs" />
     <Compile Include="Assets\_MyAssets\Script\lavaDamage.cs" />
     <Compile Include="Assets\enemyBullet_Proporties.cs" />
     <Compile Include="Assets\resetCurdor.cs" />

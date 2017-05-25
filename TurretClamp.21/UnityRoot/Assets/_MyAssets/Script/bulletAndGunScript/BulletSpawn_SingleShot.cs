@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(AudioSource))]
 public class BulletSpawn_SingleShot : MonoBehaviour {
 
 	public GameObject BulletPrefab;
@@ -11,12 +10,7 @@ public class BulletSpawn_SingleShot : MonoBehaviour {
 	bool isDug = false;		//check to see if player is dug in
 
 	public AudioClip shotSFX;
-    private AudioSource audioSource;
-
-    private void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
+    public AudioSource audioSource;
 
     private void Update () {
 		if (Input.GetKeyDown (KeyCode.Space)) {	//check middleClick
