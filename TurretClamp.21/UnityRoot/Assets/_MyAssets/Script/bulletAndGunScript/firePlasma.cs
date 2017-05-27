@@ -16,7 +16,7 @@ public class firePlasma : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetAxisRaw ("Fire2") > 0 && nextBullet < Time.time) {		//rightClick and to see if you can fire a shot
-			nextBullet = Time.time +timeBetweenBullets;
+			nextBullet = Time.time +timeBetweenBullet;
 			Instantiate(projectile, transform.position, transform.rotation);
 		}
 	

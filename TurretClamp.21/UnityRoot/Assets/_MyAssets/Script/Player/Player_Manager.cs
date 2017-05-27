@@ -11,7 +11,7 @@ public class Player_Manager : MonoBehaviour {
 
 	int currentGems = 0;
 
-	bool dug = false;	//bool to see if the player is in the ground
+	public bool isDug = false;
 	bool speedSwitch = false;	//used to check if the player is pushed back
 
 	GameObject dirt;
@@ -87,7 +87,7 @@ public class Player_Manager : MonoBehaviour {
                 myNavAgent.destination = hitLocation;
 
             }
-            if (Input.GetButtonDown("Fire1") && !dug)
+            if (Input.GetButtonDown("Fire1") && !isDug)
             {                                                           // hit leftClick, make ray for player to follow
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
@@ -116,9 +116,9 @@ public class Player_Manager : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.Space))
             {       //dig in ground code
 
-                if (dug)
+                if (isDug)
                 {       //if dug into the ground, come out of ground
-                    dug = false;
+                    isDug = false;
                     Destroy(dirt);
                     animator.SetBool("isDug", false); //makes sure the animator know ou are digging out
                     AudioSource.PlayClipAtPoint(digUpFX, transform.position, 10f);
@@ -128,7 +128,7 @@ public class Player_Manager : MonoBehaviour {
                 {       //if not dug in, start digging
                     Destroy(markerClone);
                     Destroy(preMarkerClone);
-                    dug = true;
+                    isDug = true;
                     animator.SetBool("isDug", true);
                     animator.SetBool("isRunning", false);
 

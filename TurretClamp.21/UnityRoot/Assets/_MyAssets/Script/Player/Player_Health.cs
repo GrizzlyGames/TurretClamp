@@ -19,8 +19,6 @@ public class Player_Health : MonoBehaviour {
     private NavMeshAgent myNavAgent;
 
     private Animator animator;
-    private WeaponSwitch_Controller weaponSwitch;
-
     public Image healthImage;
 
 	public AudioClip LoseFX;
@@ -30,7 +28,6 @@ public class Player_Health : MonoBehaviour {
 		currentHealth = fullHealth / 3;
         UpdateHealthBar();
         myNavAgent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
-		weaponSwitch = GetComponent<WeaponSwitch_Controller> ();
 		animator = GetComponent<Animator> ();
 	}
 	
