@@ -5,14 +5,8 @@ public class DestroyMe : MonoBehaviour {
 
 	public float duration;	//lifeTime of object
 
-	// Use this for initialization
 	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		Destroy (gameObject, duration);		//destroy object
-	
-	}
+        Destroy(gameObject, duration);      //destroy object
+    }
+    
 }

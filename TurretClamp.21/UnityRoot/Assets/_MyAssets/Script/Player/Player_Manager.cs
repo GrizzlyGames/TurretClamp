@@ -1,83 +1,92 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
-public class Player_Manager : MonoBehaviour {
+[RequireComponent(typeof(Player_Health))]
+public class Player_Manager : MonoBehaviour
+{
+    public GameObject dirtPrefab;
+    private GameObject dirtInstance;
 
-	public GameObject dirtPrefab;
-
-	private Animator animator;
-    private Rigidbody rigidbody;
+    public AudioSource moveAudioSource;
+    private Animator animator;
+    private Rigidbody rb;
     private NavMeshAgent myNavAgent;
 
-	int currentGems = 0;
+    private int currentGems = 0;
+    public bool isDug = false;
 
-	public bool isDug = false;
-	bool speedSwitch = false;	//used to check if the player is pushed back
+    //marker gameobjects
+    private Vector3 prevLocation;   //saves location of markers
+    private Vector3 hitLocation;
 
-	GameObject dirt;
-																					//marker gameobjects
-	Vector3 prevLocation;	//saves location of markers
-	Vector3 hitLocation;
+    public GameObject greenMarkerPrefab;
+    private GameObject greenMarkerInstance;
 
-	public GameObject Marker;	//gme objets for markers
-	public GameObject preMarker;
+    public GameObject redMarkerPrefab;
+    private GameObject redMarkerInstance;
 
-	GameObject markerClone;			//the marker clone instantiations
-	GameObject preMarkerClone;
+    //rock stuff
+    public GameObject rockParticle;
+    private float rockTimer = 0;
 
-	//bool markerSwitch = false;
+    //audio
+    private float walkAudioTimer = 0;
+    public AudioClip digUpFX;
+    public AudioClip digDownFX;
+    public AudioClip boopFX;
 
-																																//rock stuff
-	public GameObject rockParticle;
-	float rockTimer = .15f;
-	float nextrockTimerFire;
+    private Player_Health healthScript;
 
-	//audio
-	public AudioClip digUpFX;
-	public AudioClip digDownFX;
-	public AudioClip walkFX;
-	public AudioClip boopFX;
-
-    public Player_Health healthScript;
-
-    private void Start () {
-		animator = GetComponent<Animator>();
-		myNavAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-		prevLocation = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
-		rigidbody = GetComponent<Rigidbody> ();
-	}
-    private void Update () {
+    private void Start()
+    {
+        healthScript = GetComponent<Player_Health>();
+        animator = GetComponent<Animator>();
+        myNavAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        prevLocation = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        rb = GetComponent<Rigidbody>();
+    }
+    private void Update()
+    {
         if (healthScript.isAlive)
         {
-            if (!speedSwitch && rigidbody.velocity.magnitude < myNavAgent.speed)
-            {                             //makes sure plyer doesnt walk back when hit
-                speedSwitch = true;
-            }
-
-            if (speedSwitch)
+            // Makes sure plyer doesnt walk back when hit
+            if (rb.velocity.magnitude < myNavAgent.speed && rb.velocity.magnitude >= myNavAgent.speed * 0.25f)
             {
-                if (rigidbody.velocity.magnitude >= myNavAgent.speed / 4)
-                {
-                    myNavAgent.destination = transform.position;
-                    speedSwitch = false;
-                }
+                myNavAgent.destination = transform.position;
             }
 
-            //raycast stuff to make it follow
-            if (myNavAgent.remainingDistance != 0)
+            #region Movement Logic
+            if (myNavAgent.remainingDistance != 0) // Is moving
             {
                 animator.SetBool("isRunning", true);
-                if (Time.time > nextrockTimerFire)
+                #region Walk Audio
+                walkAudioTimer += Time.deltaTime;
+                if (walkAudioTimer >= 0.15f)
                 {
-                    AudioSource.PlayClipAtPoint(walkFX, transform.position, 1f);
-                    Instantiate(rockParticle, transform.position, transform.rotation);
-                    nextrockTimerFire = Time.time + rockTimer;
+                    Debug.Log("Walk audio timer: " + walkAudioTimer);
+                    walkAudioTimer = 0;
+                    if (!moveAudioSource.isPlaying)
+                        moveAudioSource.Play();
                 }
+                #endregion
+                #region Rock Particle EFX
+                rockTimer += Time.deltaTime;
+                float tmpCondition = Random.Range(0.2f, 0.5f);
+                if (rockTimer >= tmpCondition)
+                {
+                    rockTimer = 0;
+                    Instantiate(rockParticle, transform.position, transform.rotation);
+                }
+                #endregion
             }
-            else
+            else // Is not moving
             {
                 animator.SetBool("isRunning", false);
+                if (!moveAudioSource.isPlaying)
+                    moveAudioSource.Stop();
             }
+            #endregion
+            #region S Key logic
             if (Input.GetKeyDown(KeyCode.S))
             {
                 myNavAgent.destination = prevLocation;
@@ -85,8 +94,9 @@ public class Player_Manager : MonoBehaviour {
             else if (Input.GetKeyUp(KeyCode.S))
             {
                 myNavAgent.destination = hitLocation;
-
             }
+            #endregion
+            #region Movement Target
             if (Input.GetButtonDown("Fire1") && !isDug)
             {                                                           // hit leftClick, make ray for player to follow
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -100,57 +110,51 @@ public class Player_Manager : MonoBehaviour {
                         myNavAgent.destination = hit.point;
                         hitLocation = new Vector3(hit.point.x, hit.point.y, hit.point.z);
 
-                        Destroy(markerClone);           //desroys old markers and then makes new ones
-                        Destroy(preMarkerClone);
-                        markerClone = (GameObject)Instantiate(Marker, hitLocation, transform.rotation);
-                        preMarkerClone = (GameObject)Instantiate(preMarker, prevLocation, transform.rotation);
+                        Destroy(greenMarkerInstance);           //desroys old markers and then makes new ones
+                        Destroy(redMarkerInstance);
+                        greenMarkerInstance = (GameObject)Instantiate(greenMarkerPrefab, hitLocation, transform.rotation);
+                        redMarkerInstance = (GameObject)Instantiate(redMarkerPrefab, prevLocation, transform.rotation);
                         myNavAgent.isStopped = false;
                     }
                     else
                     {
-                        AudioSource.PlayClipAtPoint(boopFX, transform.position, 2f);
+                        AudioSource.PlayClipAtPoint(boopFX, transform.position, 1);
                     }
                 }
             }
-
+            #endregion
+            #region Dig Input Logic
             if (Input.GetKeyDown(KeyCode.Space))
-            {       //dig in ground code
-
+            { 
                 if (isDug)
-                {       //if dug into the ground, come out of ground
+                {
                     isDug = false;
-                    Destroy(dirt);
+                    Destroy(dirtInstance);
                     animator.SetBool("isDug", false); //makes sure the animator know ou are digging out
                     AudioSource.PlayClipAtPoint(digUpFX, transform.position, 10f);
-
                 }
                 else
-                {       //if not dug in, start digging
-                    Destroy(markerClone);
-                    Destroy(preMarkerClone);
+                {
+                    Destroy(greenMarkerInstance);
+                    Destroy(redMarkerInstance);
                     isDug = true;
                     animator.SetBool("isDug", true);
                     animator.SetBool("isRunning", false);
-
-                    AudioSource.PlayClipAtPoint(digDownFX, transform.position, 10f);
-
+                    AudioSource.PlayClipAtPoint(digDownFX, transform.position, 1);
                     myNavAgent.destination = transform.position;        //sets the positoin to the players transform, so the plyer stops
                     myNavAgent.isStopped = true;
-                    dirt = (GameObject)Instantiate(dirtPrefab, transform.position, transform.rotation);
-                    if (Time.time > nextrockTimerFire)
-                    {
-                        Instantiate(rockParticle, transform.position, transform.rotation);
-                        nextrockTimerFire = Time.time + rockTimer;
-                    }
+                    dirtInstance = (GameObject)Instantiate(dirtPrefab, transform.position, transform.rotation);
                 }
-            }            
+            }
+            #endregion
         }
         else
             myNavAgent.speed = 0;
     }
 
-	public void AddGems(int value){ //gem stuff
-		currentGems +=value;
-		print("Gems: " + currentGems);
-	}
+    public void AddGems(int value)
+    {
+        currentGems += value;
+        print("Gems: " + currentGems);
+    }
 }

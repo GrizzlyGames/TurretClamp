@@ -85,7 +85,6 @@
     <Compile Include="Assets\ChangeScene.cs" />
     <Compile Include="Assets\PlayVideo.cs" />
     <Compile Include="Assets\SceneCounterScript.cs" />
-    <Compile Include="Assets\_MyAssets\Script\Camera_Zoom.cs" />
     <Compile Include="Assets\_MyAssets\Script\DestroyMe.cs" />
     <Compile Include="Assets\_MyAssets\Script\GemController.cs" />
     <Compile Include="Assets\_MyAssets\Script\ItemRotateScript.cs" />
@@ -93,6 +92,7 @@
     <Compile Include="Assets\_MyAssets\Script\Player\Player_Health.cs" />
     <Compile Include="Assets\_MyAssets\Script\Player\Player_Manager.cs" />
     <Compile Include="Assets\_MyAssets\Script\Player\Player_Weapon.cs" />
+    <Compile Include="Assets\_MyAssets\Script\Utility\Camera_Zoom.cs" />
     <Compile Include="Assets\_MyAssets\Script\bulletAndGunScript\bulletProperties.cs" />
     <Compile Include="Assets\_MyAssets\Script\enemy\Enemy_Controller.cs" />
     <Compile Include="Assets\_MyAssets\Script\enemy\enemyDamage.cs" />

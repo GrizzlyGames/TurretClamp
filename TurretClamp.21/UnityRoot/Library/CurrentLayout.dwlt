@@ -91,7 +91,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 122}
   m_MaxSize: {x: 4000, y: 4022}
   vertical: 0
-  controlID: 35
+  controlID: 47
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
-  controlID: 9
+  controlID: 84
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -280,7 +280,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 10
+  controlID: 85
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 11
+  controlID: 86
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -496,19 +496,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/_MyAssets/Script
+    - Assets/_MyAssets/Prefab/Player
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/_MyAssets/Script
+  - Assets/_MyAssets/Prefab/Player
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\Kyle\Documents\GitHub\TurretClamp\TurretClamp.21\UnityRoot
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 35}
-    m_SelectedIDs: ac280000
-    m_LastClickedID: 10412
-    m_ExpandedIDs: 0000000020250000262500002e2500003a250000d825000020260000322600005e2600006c260000782600008a260000d82600001627000046270000a2270000ae270000b0270000b6270000be270000c2270000d6270000f227000064280000ac28000026290000f64500002446000026460000284600002a4600002c4600002e46000030460000324600003446000036460000384600003a46000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 95}
+    m_SelectedIDs: 24260000
+    m_LastClickedID: 9764
+    m_ExpandedIDs: 000000001c250000222500002a25000036250000d42500001c2600002e2600005a260000682600007426000086260000d426000012270000422700009e270000aa270000ac270000b2270000ba270000be270000d2270000ee2700001428000060280000a8280000222900000846000036460000384600003a4600003c4600003e46000040460000424600004446000046460000484600004a4600004c46000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -536,7 +536,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000020250000262500002e2500003a250000d825000020260000322600005e2600006c260000782600008a260000d82600001627000046270000a2270000ae270000b0270000b6270000be270000c2270000d6270000f22700001828000064280000ac28000026290000f64500002446000026460000284600002a4600002c4600002e46000030460000324600003446000036460000384600003a460000
+    m_ExpandedIDs: 000000001c250000222500002a25000036250000d42500001c2600002e2600005a260000682600007426000086260000d426000012270000422700009e270000aa270000ac270000b2270000ba270000be270000d2270000ee27000060280000a8280000222900000846000036460000384600003a4600003c4600003e46000040460000424600004446000046460000484600004a4600004c460000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -567,18 +567,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: 9c28000012290000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Camera_Zoom
-      m_OriginalName: Camera_Zoom
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 18050
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 8}
     m_CreateAssetUtility:
@@ -654,21 +654,21 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 7885ffff50a6ffff76f3ffff4cfbffff52fbffff64fbffff66fbffffd0fbffff00000000
+    m_ExpandedIDs: d2fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Main Camera
-      m_OriginalName: Main Camera
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: -1190
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 7}
     m_SearchString: 
@@ -704,14 +704,14 @@ MonoBehaviour:
     width: 1148
     height: 652
   m_SceneLighting: 1
-  lastFramingTime: 4110.819391994853
+  lastFramingTime: 888.3118788282723
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 14.975821, y: -3.2445471, z: -0.85200757}
+    m_Target: {x: 36.202587, y: -13.93915, z: 2.1337466}
     speed: 2
-    m_Value: {x: 14.975821, y: -3.2445471, z: -0.85200757}
+    m_Value: {x: 36.202587, y: -13.93915, z: 2.1337466}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -734,13 +734,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.11285562, y: 0.69641083, z: -0.11231341, w: 0.69975805}
+    m_Target: {x: 0.14161295, y: 0.703032, z: -0.14610004, w: 0.6814298}
     speed: 2
-    m_Value: {x: 0.11285562, y: 0.69641083, z: -0.11231341, w: 0.69975805}
+    m_Value: {x: 0.14161295, y: 0.703032, z: -0.14610004, w: 0.6814298}
   m_Size:
-    m_Target: 260.0721
+    m_Target: 37.22491
     speed: 2
-    m_Value: 260.0721
+    m_Value: 37.22491
   m_Ortho:
     m_Target: 0
     speed: 2
