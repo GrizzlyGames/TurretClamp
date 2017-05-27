@@ -85,6 +85,7 @@
     <Compile Include="Assets\ChangeScene.cs" />
     <Compile Include="Assets\PlayVideo.cs" />
     <Compile Include="Assets\SceneCounterScript.cs" />
+    <Compile Include="Assets\_MyAssets\Script\Camera_Zoom.cs" />
     <Compile Include="Assets\_MyAssets\Script\DestroyMe.cs" />
     <Compile Include="Assets\_MyAssets\Script\GemController.cs" />
     <Compile Include="Assets\_MyAssets\Script\ItemRotateScript.cs" />
