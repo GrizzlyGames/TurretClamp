@@ -65,7 +65,7 @@ public class Enemy_Controller : MonoBehaviour
             // Debug.Log(hitInfo.transform.name);
             if (hitInfo.transform.CompareTag("Player"))
             {
-                Debug.Log("Enemy can see player.");
+               // Debug.Log("Enemy can see player.");
                 canSeePlayer = true;
                 weaponTransform.LookAt(player.transform.position); // Look at player 
             }
