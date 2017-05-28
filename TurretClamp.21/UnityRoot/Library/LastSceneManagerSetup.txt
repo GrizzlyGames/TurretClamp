@@ -1,1 +1,4 @@
-sceneSetups: []
+sceneSetups:
+- path: Assets/_MyAssets/Scene/Game-Play.unity
+  isLoaded: 1
+  isActive: 1
