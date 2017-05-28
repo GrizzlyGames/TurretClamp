@@ -30,13 +30,18 @@ public class Player_Weapon : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.name == "BaseDouble")
+		if (other.transform.name == "Gun-Single")
+		{
+			ChangeWeapon(0);
+			Destroy(other.gameObject);
+		}
+        if (other.transform.name == "Gun-Double")
         {
             ChangeWeapon(1);
             Destroy(other.gameObject);
         }
 
-        else if (other.transform.name == "BasePlasma")
+        else if (other.transform.name == "Gun-Plasma")
         {
             ChangeWeapon(2);
             Destroy(other.gameObject);
