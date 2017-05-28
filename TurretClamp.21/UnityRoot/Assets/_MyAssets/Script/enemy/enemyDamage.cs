@@ -22,14 +22,16 @@ public class enemyDamage : MonoBehaviour {
 		nextDamage = Time.time;
 	}
 
-	void OnTriggerEnter(Collider other){		//colides with player tag = player in range
-		if (other.tag == "Player") {
-            Attack();
-        }
+	void OnCollisionEnter(Collision col){
+		if (col.transform.tag == "Player") {
+			Attack();
+			pushBack (col.gameObject.transform);
+		}
 	}
 
 
 	void Attack(){					//what happens when enemy attacks
+		
 		if (nextDamage <= Time.time) {		//rate of fire stuff, also particle triggers
 			thePlayerHealth.addDamage(damage);
 			if(springFX){
@@ -39,7 +41,6 @@ public class enemyDamage : MonoBehaviour {
 				thePlayerHealth.fireFX();
 			}
 			nextDamage = Time.time +damageRate;
-			pushBack(thePlayer.transform);
 		}
 	}
 	void pushBack(Transform pushedObject){	//applys force to player

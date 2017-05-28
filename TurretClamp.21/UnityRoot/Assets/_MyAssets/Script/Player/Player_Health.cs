@@ -5,12 +5,12 @@ using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 public class Player_Health : MonoBehaviour {
 
+
     public float fullHealth;
     public float currentHealth;
 	
 	public GameObject backoff;
 	bool slowTrigger = false;
-	bool deadTrigger = false;
 	public bool isAlive = true;
 
 	public GameObject springParticle;
@@ -40,7 +40,7 @@ public class Player_Health : MonoBehaviour {
 		if (isAlive) {
             currentHealth -= damage;
             UpdateHealthBar();
-            AudioSource.PlayClipAtPoint (playerDamageFX, transform.position, 1f);			
+            AudioSource.PlayClipAtPoint (playerDamageFX, transform.position, 1f);		
 
 			if (currentHealth < 1) {
                 StartCoroutine(DeathDelay());
@@ -78,9 +78,17 @@ public class Player_Health : MonoBehaviour {
 	}
 
 	private void OnCollisionEnter(Collision other){		
+		Debug.Log ("Collosion " + other.transform.name);
 		if (other.collider.tag == "enemyBullet") {
 			addDamage (1);
 			Destroy (other.gameObject);
-		}
+		} else
+			StartCoroutine (DestinationDelay ());
 	}
+
+	IEnumerator DestinationDelay(){
+		yield return new WaitForSeconds (0.1f);
+		myNavAgent.destination = transform.position;
+	}
+		
 }

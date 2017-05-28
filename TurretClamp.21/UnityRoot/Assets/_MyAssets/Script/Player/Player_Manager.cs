@@ -10,7 +10,7 @@ public class Player_Manager : MonoBehaviour
     public AudioSource moveAudioSource;
     private Animator animator;
     private Rigidbody rb;
-    private NavMeshAgent myNavAgent;
+	public NavMeshAgent myNavAgent;
 
     private int currentGems = 0;
     public bool isDug = false;
@@ -47,14 +47,9 @@ public class Player_Manager : MonoBehaviour
     }
     private void Update()
     {
+			
         if (healthScript.isAlive)
         {
-            // Makes sure plyer doesnt walk back when hit
-            if (rb.velocity.magnitude < myNavAgent.speed && rb.velocity.magnitude >= myNavAgent.speed * 0.25f)
-            {
-                myNavAgent.destination = transform.position;
-            }
-
             #region Movement Logic
             if (myNavAgent.remainingDistance != 0) // Is moving
             {
@@ -63,7 +58,6 @@ public class Player_Manager : MonoBehaviour
                 walkAudioTimer += Time.deltaTime;
                 if (walkAudioTimer >= 0.15f)
                 {
-                    Debug.Log("Walk audio timer: " + walkAudioTimer);
                     walkAudioTimer = 0;
                     if (!moveAudioSource.isPlaying)
                         moveAudioSource.Play();
@@ -143,7 +137,7 @@ public class Player_Manager : MonoBehaviour
                     AudioSource.PlayClipAtPoint(digDownFX, transform.position, 1);
                     myNavAgent.destination = transform.position;        //sets the positoin to the players transform, so the plyer stops
                     myNavAgent.isStopped = true;
-                    dirtInstance = (GameObject)Instantiate(dirtPrefab, transform.position, transform.rotation);
+					StartCoroutine(DirtDigDelay());                    
                 }
             }
             #endregion
@@ -157,4 +151,9 @@ public class Player_Manager : MonoBehaviour
         currentGems += value;
         print("Gems: " + currentGems);
     }
+	IEnumerator DirtDigDelay(){
+		yield return new WaitForSeconds (0.3f);
+		dirtInstance = (GameObject)Instantiate(dirtPrefab, transform.position, transform.rotation);
+	}
+
 }

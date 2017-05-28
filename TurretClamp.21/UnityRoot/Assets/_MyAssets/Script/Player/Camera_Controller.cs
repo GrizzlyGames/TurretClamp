@@ -39,7 +39,7 @@ public class Camera_Controller : MonoBehaviour
         {
             if (Input.GetAxis("Mouse ScrollWheel") > 0) // forward scroll
             {
-                if (xRotation < 89) 
+                if (xRotation < 84) 
                     xRotation += 5f;
                 if(zoom > -3)
                 zoom -= 0.25f;
