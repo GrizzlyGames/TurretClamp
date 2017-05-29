@@ -19,7 +19,7 @@ public class bulletProperties : MonoBehaviour
 
 	void OnCollisionEnter(Collision collision)
 	{
-		if (collision.gameObject.layer == LayerMask.NameToLayer("Shootable") || collision.gameObject.tag == "PlayerBullet")
+		if (collision.gameObject.layer == LayerMask.NameToLayer("Shootable") )
         {   //looks for shotable layer to destroy bullet
             Instantiate(ricochetFX, transform.position, Quaternion.Euler(new Vector3(-90, 0, 0)));
             Destroy(gameObject);
