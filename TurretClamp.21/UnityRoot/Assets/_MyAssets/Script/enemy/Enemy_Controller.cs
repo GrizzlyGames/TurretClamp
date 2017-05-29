@@ -7,7 +7,6 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Rigidbody))]
 public class Enemy_Controller : MonoBehaviour
 {
-    public Animator weaponAnimator;
     public Transform weaponTransform;
     private Animator animator;
     private NavMeshAgent myNavAgent;
@@ -120,7 +119,6 @@ public class Enemy_Controller : MonoBehaviour
         isShooting = true;
         float fireTimer = Random.Range(.5f, 1f);
         yield return new WaitForSeconds(fireTimer);
-        weaponAnimator.SetTrigger("shoot");
         GameObject bullet = Instantiate(BulletPrefab, bulletSpawn.position, bulletSpawn.rotation) as GameObject;
         bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * speed;
         Destroy(bullet, 1f);

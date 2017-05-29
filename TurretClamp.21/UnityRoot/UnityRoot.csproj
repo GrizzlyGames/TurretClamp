@@ -83,6 +83,7 @@
   <ItemGroup>
     <Compile Include="Assets\Billboard.cs" />
     <Compile Include="Assets\ChangeScene.cs" />
+    <Compile Include="Assets\Info_Button.cs" />
     <Compile Include="Assets\PlayVideo.cs" />
     <Compile Include="Assets\SceneCounterScript.cs" />
     <Compile Include="Assets\_MyAssets\Script\DestroyMe.cs" />
