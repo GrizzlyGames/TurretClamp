@@ -58,7 +58,6 @@
      <Compile Include="Assets\_MyAssets\Script\Player\Player_Health.cs" />
      <Compile Include="Assets\_MyAssets\Script\Player\Player_Manager.cs" />
      <Compile Include="Assets\_MyAssets\Script\Player\Player_Weapon.cs" />
-     <Compile Include="Assets\_MyAssets\Script\Utility\Camera_Zoom.cs" />
      <Compile Include="Assets\_MyAssets\Script\bulletAndGunScript\bulletProperties.cs" />
      <Compile Include="Assets\_MyAssets\Script\enemy\Enemy_Controller.cs" />
      <Compile Include="Assets\_MyAssets\Script\enemy\enemyDamage.cs" />
