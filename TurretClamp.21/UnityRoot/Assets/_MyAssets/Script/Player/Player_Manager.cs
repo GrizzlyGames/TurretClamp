@@ -9,7 +9,6 @@ public class Player_Manager : MonoBehaviour
 
     public AudioSource moveAudioSource;
     private Animator animator;
-    private Rigidbody rb;
 	public NavMeshAgent myNavAgent;
 
     private int currentGems = 0;
@@ -43,7 +42,6 @@ public class Player_Manager : MonoBehaviour
         animator = GetComponent<Animator>();
         myNavAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         prevLocation = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        rb = GetComponent<Rigidbody>();
     }
     private void Update()
     {

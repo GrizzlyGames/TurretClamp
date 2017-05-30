@@ -11,13 +11,11 @@ public class Player_Weapon : MonoBehaviour
     private int weaponIndex = 0;
     public GameObject[] weaponsGO;
     public Animator[] weaponAnimator;
-    private Animator animator;
     private Player_Manager player;
 
     private void Start()
     {
         player = GetComponent<Player_Manager>();
-        animator = GetComponent<Animator>();
         ChangeWeapon(0);
     }
     private void Update()

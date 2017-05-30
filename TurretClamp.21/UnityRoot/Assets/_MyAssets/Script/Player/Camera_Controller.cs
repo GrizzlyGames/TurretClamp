@@ -48,15 +48,15 @@ public class Camera_Controller : MonoBehaviour
             {
                 if (xRotation < 84)
                     xRotation += 5f;
-                if (zoom > -3)
-                    zoom -= 0.25f;
+                if (zoom > -1.2f)
+                    zoom -= 0.2f;
             }
             else if (Input.GetAxis("Mouse ScrollWheel") < 0) // back scroll
             {
                 if (xRotation > 15)
                     xRotation -= 5f;
-                if (zoom < 1.5f)
-                    zoom += 0.25f;
+                if (zoom < 1.8f)
+                    zoom += 0.2f;
             }
             xTrans.localRotation = Quaternion.Euler(xRotation, 0, 0);
             zTrans.localPosition = new Vector3(0, 0, zoom);
