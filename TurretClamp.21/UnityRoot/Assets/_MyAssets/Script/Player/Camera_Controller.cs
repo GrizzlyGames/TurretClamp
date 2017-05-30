@@ -8,8 +8,6 @@ public class Camera_Controller : MonoBehaviour
     public Transform xTrans;
     public Transform zTrans;
 
-
-    private float yRotation;
     private float xRotation = 45;
     private float zoom;
 
@@ -19,42 +17,52 @@ public class Camera_Controller : MonoBehaviour
     }
 
     private void Update()
-    {        
+    {
         CameraFollow();
         YRotate();
         Zoom();
     }
 
+    private float desiredRot;
+    public float rotSpeed = 250;
+    public float damping = 10;
+
     private void YRotate()
     {
         if (Input.GetKey(KeyCode.A))
-            yRotation -= 1;
+            desiredRot -= rotSpeed * Time.deltaTime;
         else if (Input.GetKey(KeyCode.D))
-            yRotation += 1;
-        yTrans.rotation = Quaternion.Euler(0, transform.rotation.y + yRotation, 0);
+            desiredRot += rotSpeed * Time.deltaTime;
+
+        var desiredRotQ = Quaternion.Euler(transform.eulerAngles.x, desiredRot, transform.eulerAngles.z);
+        yTrans.transform.rotation = Quaternion.Lerp(yTrans.transform.rotation, desiredRotQ, Time.deltaTime * damping);
     }
+
+
+
     private void Zoom()
     {
         if (Input.GetAxis("Mouse ScrollWheel") != 0)
         {
             if (Input.GetAxis("Mouse ScrollWheel") > 0) // forward scroll
             {
-                if (xRotation < 84) 
+                if (xRotation < 84)
                     xRotation += 5f;
-                if(zoom > -3)
-                zoom -= 0.25f;
+                if (zoom > -3)
+                    zoom -= 0.25f;
             }
             else if (Input.GetAxis("Mouse ScrollWheel") < 0) // back scroll
             {
-                if (xRotation > 5)
+                if (xRotation > 15)
                     xRotation -= 5f;
-                if (zoom < 1)
+                if (zoom < 1.5f)
                     zoom += 0.25f;
             }
             xTrans.localRotation = Quaternion.Euler(xRotation, 0, 0);
-            zTrans.localPosition = new Vector3(0, 0, zoom);            
+            zTrans.localPosition = new Vector3(0, 0, zoom);
         }
     }
+
 
     private void CameraFollow()
     {

@@ -53,10 +53,7 @@ public class Player_Weapon : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 10))
         {
-            if (!hit.collider.CompareTag("Blocked"))
-            {
-                weaponTransform.LookAt(hit.point);
-            }
+            weaponTransform.LookAt(hit.point);
         }
     }
 
