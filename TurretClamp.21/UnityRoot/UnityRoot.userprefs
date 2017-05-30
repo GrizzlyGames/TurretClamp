@@ -1,15 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_MyAssets\Script\bulletAndGunScript\bulletProperties.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_MyAssets\Script\Player\Camera_Controller.cs">
     <Files>
       <File FileName="Assets\Info_Button.cs" Line="1" Column="1" />
       <File FileName="Assets\_MyAssets\Script\enemy\Enemy_Controller.cs" Line="1" Column="1" />
-      <File FileName="Assets\_MyAssets\Script\Player\Camera_Controller.cs" Line="1" Column="1" />
+      <File FileName="Assets\_MyAssets\Script\Player\Camera_Controller.cs" Line="51" Column="29" />
       <File FileName="Assets\_MyAssets\Script\enemy\enemyDamage.cs" Line="1" Column="1" />
       <File FileName="Assets\_MyAssets\Script\Player\Player_Health.cs" Line="1" Column="1" />
       <File FileName="Assets\_MyAssets\Script\Player\Player_Manager.cs" Line="1" Column="1" />
       <File FileName="Assets\_MyAssets\Script\Player\Player_Weapon.cs" Line="1" Column="1" />
-      <File FileName="Assets\_MyAssets\Script\bulletAndGunScript\bulletProperties.cs" Line="22" Column="73" />
+      <File FileName="Assets\_MyAssets\Script\bulletAndGunScript\bulletProperties.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
